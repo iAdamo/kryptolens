@@ -1,3 +1,4 @@
+"use client";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import NavBar from "@/components/layout/NavBar";
 import SideBar from "@/components/layout/SideBar";
