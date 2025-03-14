@@ -25,7 +25,8 @@ import { EyeIcon, ChevronDownIcon, ArrowUpIcon } from "@/components/ui/icon";
 import { bitcoin } from "@/public/assets/dashboard";
 import { Input, InputField } from "@/components/ui/input";
 import { Pressable } from "@/components/ui/pressable";
-
+import { Divider } from "@/components/ui/divider";
+import { Progress, ProgressFilledTrack } from "@/components/ui/progress";
 // Define the interface for market data
 interface MarketData {
   id: string;
@@ -104,73 +105,92 @@ const MainBar = () => {
   }, []);
 
   useEffect(() => {
-    setInrValue(parseFloat(coinValue) * conversionRate * marketData[0]?.current_price);
+    setInrValue(
+      parseFloat(coinValue) * conversionRate * marketData[0]?.current_price
+    );
   }, [coinValue, conversionRate, marketData]);
 
   const handleSave = () => {
     setEditCoin(false);
-    setInrValue(parseFloat(coinValue) * conversionRate * marketData[0]?.current_price);
+    setInrValue(
+      parseFloat(coinValue) * conversionRate * marketData[0]?.current_price
+    );
   };
 
   return (
     <VStack className="w-full h-full rounded-xl gap-4">
-      <Card variant="outline" className="h-52">
+      <Card variant="outline" className="md:h-52 gap-10 md-gap-0">
         <HStack className="justify-between w-full">
           <HStack className="gap-4">
             <VStack>
-              <Avatar size="lg" className="bg-[#A2ACC8]">
+              <Avatar size={"md"} className="bg-[#A2ACC8]">
                 <AvatarFallbackText className="">T</AvatarFallbackText>
                 <AvatarImage source={{ uri: "" }} />
               </Avatar>
             </VStack>
             <VStack>
-              <Text size="sm">Welcome...</Text>
-              <Heading size="xl">Boss Bossess</Heading>
+              <Text className="text-sm md:text-md">Welcome...</Text>
+              <Heading size="md" className="md:text-3xl">
+                Dhanush Kumar
+              </Heading>
             </VStack>
           </HStack>
           <HStack>
-            <Button size="sm" variant="outline" className="rounded-full">
-              <ButtonText size="sm">Hide info</ButtonText>
-              {""}
+            <Button size="xs" variant="outline" className="rounded-full">
+              <ButtonText size="sm" className="hidden md:inline">
+                Hide info
+              </ButtonText>
               <ButtonIcon as={EyeIcon} />
             </Button>
           </HStack>
         </HStack>
-        <HStack className="grid grid-cols-5 gap-4 items-center mt-auto">
+        <HStack className="grid md:grid-cols-5 grid-cols-2 gap-4 items-center md:mt-auto">
           <Card variant="outline" className="h-16 p-2 justify-between">
             <Text size="xs">UID</Text>
-            <Heading size="xs">18477839</Heading>
+            <Heading className="text-xs md:text-md">18477839</Heading>
           </Card>
           <Card variant="outline" className="h-16 p-2 justify-between">
             <Text size="xs">Identity verification</Text>
-            <Heading size="xs">Verified</Heading>
+            <Heading className="text-xs md:text-md">Verified</Heading>
           </Card>
           <Card variant="outline" className="h-16 p-2 justify-between">
             <Text size="xs">Security</Text>
-            <Heading size="xs">High</Heading>
+            <Heading className="text-xs md:text-md">High</Heading>
           </Card>
           <Card variant="outline" className="h-16 p-2 justify-between">
             <Text size="xs">Time zone</Text>
-            <Heading size="xs">UTC +8 Singapore</Heading>
+            <Heading className="text-xs md:text-md">UTC +8 Singapore</Heading>
           </Card>
           <Card variant="outline" className="h-16 p-2 justify-between">
             <Text size="xs">Last login</Text>
-            <Heading size="xs">13-03-2025 4:34PM</Heading>
+            <Heading className="text-xs md:text-md">13-03-2025 4:34PM</Heading>
           </Card>
         </HStack>
       </Card>
-      <HStack className="w-full gap-4">
-        <VStack className="w-3/4 gap-4">
-          <HStack className="grid grid-cols-2 gap-4">
+      <VStack className="md:flex-row w-full gap-4">
+        <VStack className="md:w-3/4 gap-4">
+          <VStack className="md:flex-row md:grid md:grid-cols-2 gap-4">
             <Card variant="outline" className="h-60 gap-4">
               <HStack className="grid grid-cols-3 gap-4 h-12">
-                <Button size="sm" variant="outline" className="rounded-full ">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="rounded-full px-1"
+                >
                   <ButtonText size="xs">Buy crypto</ButtonText>
                 </Button>
-                <Button size="sm" variant="outline" className="rounded-full">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="rounded-full px-1"
+                >
                   <ButtonText size="xs">Deposit</ButtonText>
                 </Button>
-                <Button size="sm" variant="outline" className="rounded-full">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="rounded-full px-1"
+                >
                   <ButtonText size="xs">Withdraw</ButtonText>
                 </Button>
               </HStack>
@@ -187,7 +207,11 @@ const MainBar = () => {
                           <InputField
                             placeholder="Enter Text here..."
                             value={coinValue}
-                            onChange={(e) => setCoinValue(e.target.value)}
+                            onChange={(e) =>
+                              setCoinValue(
+                                (e.target as unknown as HTMLInputElement).value
+                              )
+                            }
                             onBlur={handleSave}
                           />
                         </Input>
@@ -254,7 +278,7 @@ const MainBar = () => {
                 </Card>
               </VStack>
             </Card>
-          </HStack>
+          </VStack>
           <Card variant="outline" className="gap-4">
             <HStack className="justify-between">
               <Heading>Market</Heading>
@@ -302,7 +326,18 @@ const MainBar = () => {
                         </HStack>
                       </TableData>
                       <TableData>${data.current_price}</TableData>
-                      <TableData>{parseFloat(data.price_change_percentage_24h.toString()).toFixed(2)}%</TableData>
+                      <TableData>
+                        {parseFloat(
+                          data.price_change_percentage_24h.toString()
+                        ).toFixed(2)}
+                        %
+                      </TableData>
+                      <TableData>
+                        {parseFloat(
+                          data.price_change_percentage_24h.toString()
+                        ).toFixed(2)}
+                        %
+                      </TableData>
                       <TableData>
                         <Button
                           size="xs"
@@ -310,7 +345,7 @@ const MainBar = () => {
                           className="rounded-full"
                         >
                           <ButtonText>Trade</ButtonText>
-                          <ButtonIcon as={ChevronDownIcon}/>
+                          <ButtonIcon as={ChevronDownIcon} />
                         </Button>
                       </TableData>
                     </TableRow>
@@ -320,12 +355,71 @@ const MainBar = () => {
             </Box>
           </Card>
         </VStack>
-        <VStack className="w-1/4 gap-4">
-          <Card variant="outline" className="h-56"></Card>
+        <VStack className="md:w-1/3 gap-4">
+          <Card variant="outline" className="md:h-56 gap-2">
+            <HStack className="justify-between">
+              <Button variant="link" className="">
+                <ButtonIcon />
+                <ButtonText className="data-[hover=true]:no-underline">
+                  VIP LV. 1
+                </ButtonText>
+              </Button>
+              <Button size="xs" variant="link" className="">
+                <ButtonText>View more</ButtonText>
+                <ButtonIcon as={ArrowUpIcon} className="rotate-45" />
+              </Button>
+            </HStack>
+            <HStack className="justify-between">
+              <Card variant="filled">
+                <Text size="sm" className="">
+                  Spot fee rate
+                </Text>
+                <HStack>
+                  <Text size="sm" className="">
+                    0.22%
+                  </Text>
+                  <Divider orientation="vertical" className="mx-2" />
+                  <Text size="sm" className="">
+                    0.25%
+                  </Text>
+                </HStack>
+              </Card>
+              <Card variant="filled">
+                <Text size="sm" className="">
+                  Spot fee rate
+                </Text>
+                <HStack>
+                  <Text size="sm" className="">
+                    0.22%
+                  </Text>
+                  <Divider orientation="vertical" className="mx-2" />
+                  <Text size="sm" className="">
+                    0.25%
+                  </Text>
+                </HStack>
+              </Card>
+            </HStack>
+            <VStack className="items-start justify-start gap-1">
+              <Button size="sm" variant="link" className="w-32">
+                <ButtonText className="data-[hover=true]:no-underline">
+                  KLS holdings
+                </ButtonText>
+                <ButtonIcon as={ChevronDownIcon} />
+              </Button>
+              <Progress value={40} size="md" orientation="horizontal">
+                <ProgressFilledTrack />
+              </Progress>
+              <HStack space="md">
+                <Text size="xs">Lv.7</Text>
+                <Text size="xs">Increase your KLS holdings by 1000KLS to upgrade to the next level</Text>
+                <Text size="xs">Lv.7</Text>
+              </HStack>
+            </VStack>
+          </Card>
           <Card variant="outline" className="h-36"></Card>
           <Card variant="outline" className="h-56"></Card>
         </VStack>
-      </HStack>
+      </VStack>
     </VStack>
   );
 };

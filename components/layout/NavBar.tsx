@@ -17,37 +17,37 @@ import { Button, ButtonText } from "@/components/ui/button";
 
 export const NavBar = () => {
   return (
-    <VStack className="bg-[#0D061B] px-10 py-4">
-      <HStack className="justify-between">
+    <VStack className="md:border-b px-2 md:px-10 py-4">
+      <HStack className="md:justify-between">
         <HStack className="gap-10 items-center">
           <VStack>
             <Image src="/logo.png" alt="logo" width={50} height={50} />
           </VStack>
-          <HStack className="space-x-10">
+          <HStack className="hidden md:flex space-x-10">
             <Link href="/buy-crypto">
-              <Text className="text-white">Buy Crypto</Text>
+              <Text className="">Buy Crypto</Text>
             </Link>
             <Link href="/dashboard/markets">
-              <Text className="text-white">Markets</Text>
+              <Text className="">Markets</Text>
             </Link>
             <Link href="/dashboard/trade">
-              <Text className="text-white">Trade</Text>
+              <Text className="">Trade</Text>
             </Link>
             <Link href="/dashboard/derivatives">
-              <Text className="text-white">Derivatives</Text>
+              <Text className="">Derivatives</Text>
             </Link>
             <Link href="/dashboard/earn">
-              <Text className="text-white">Earn</Text>
+              <Text className="">Earn</Text>
             </Link>
             <Link href="/dashboard/more">
-              <Text className="text-white">More</Text>
+              <Text className="">More</Text>
             </Link>
           </HStack>
           <HStack></HStack>
         </HStack>
-        <HStack className="space-x-4 items-center justify-end">
+        <HStack className="ml-auto justify-between space-x-4 items-center">
           {/** Search */}
-          <Input className="hidden md:flex w-2/5 bg-[#170E27] border-none rounded-full">
+          <Input className="hidden md:flex w-2/5 bg-background-100 border-none rounded-full">
             <InputField
               type="text"
               placeholder="Search..."
@@ -59,17 +59,27 @@ export const NavBar = () => {
             </InputSlot>
           </Input>
           <Pressable className="">
-            <Avatar className="bg-[#A2ACC8]">
+            <Avatar size="sm" className="bg-[#A2ACC8]">
               <AvatarFallbackText className="">T</AvatarFallbackText>
-              <AvatarImage source={{ uri: null }} />
+              <AvatarImage source={{ uri: "" }} />
               <AvatarBadge />
             </Avatar>
           </Pressable>
-          <Button className="bg-[#466DD0] rounded-full">
+          <Button size="xs" className="bg-[#466DD0] rounded-full">
             <ButtonText>Add Funds</ButtonText>
           </Button>
         </HStack>
       </HStack>
+      {/** Search */}
+      <Input className="md:hidden mt-2 w-2/3 bg-background-100 border-none rounded-full">
+        <InputSlot className="pl-3">
+          <InputIcon as={SearchIcon} className="" />
+        </InputSlot>
+        <InputField
+          type="text"
+          className="bg-transparent text-text-primary"
+        />
+      </Input>
     </VStack>
   );
 };

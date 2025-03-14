@@ -10,14 +10,14 @@ export default function AdminDashboard() {
   return (
     <SafeAreaView>
       <NavBar />
-      <HStack className="p-4 justify-between">
-        <VStack className="w-1/5 p-2 rounded-xl">
+      <VStack className="md:flex-row p-4 justify-between">
+        <HStack className="md:flex-col md:w-1/5 p-2 rounded-xl">
           <SideBar />
-        </VStack>
-        <VStack className="w-4/5 p-2 rounded-xl">
+        </HStack>
+        <VStack className="md:w-4/5 p-2 rounded-xl">
           <MainBar />
         </VStack>
-      </HStack>
+      </VStack>
     </SafeAreaView>
   );
 }
