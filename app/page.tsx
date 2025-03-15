@@ -1,10 +1,27 @@
-import type { Metadata } from "next";
-import AdminDashboard from "@/screens/dashboard/admin";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useSession } from "@/context/AuthContext";
 
 
-export const metadata: Metadata = {
-  title: "Kryptolens - Admin Dashboard",
-  description: "Admin dashboard for Kryptolens",
-};
+const App = () => {
+  const router = useRouter();
+  const { session } = useSession();
 
-export default AdminDashboard;
+  useEffect(() => {
+    if (session) {
+      router.replace("/dashboard");
+    } else {
+      router.replace("/auth/signin");
+    }
+  }, [session, router]);
+
+  return (
+    <div>
+      <h1>Loading...</h1>
+    </div>
+  );
+}
+
+export default App;
