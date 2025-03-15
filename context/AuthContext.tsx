@@ -1,6 +1,6 @@
 import { useContext, createContext, type PropsWithChildren } from "react";
 import { useStorageState } from "@/utils/StorageState";
-import { login, logout } from "@/axios/auth";
+import { logout } from "@/axios/auth";
 import { useRouter } from "next/navigation";
 import type { AuthContextProps } from "@/types";
 

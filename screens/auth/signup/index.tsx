@@ -54,7 +54,6 @@ const SignUpModal = () => {
     control,
     handleSubmit,
     getValues,
-    reset,
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(FormSchema.omit({ code: true })),
