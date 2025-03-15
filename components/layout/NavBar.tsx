@@ -2,7 +2,6 @@ import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
 import Link from "next/link";
 import Image from "next/image";
-import { Heading } from "@/components/ui/heading";
 import { Input, InputField, InputSlot, InputIcon } from "@/components/ui/input";
 import { SearchIcon } from "@/components/ui/icon";
 import {
@@ -17,7 +16,7 @@ import { Button, ButtonText } from "@/components/ui/button";
 
 export const NavBar = () => {
   return (
-    <VStack className="md:border-b px-2 md:px-10 py-4">
+    <VStack className="md:border-b px-2 md:px-10 md:py-4 py-2">
       <HStack className="md:justify-between">
         <HStack className="gap-10 items-center">
           <VStack>
@@ -70,16 +69,7 @@ export const NavBar = () => {
           </Button>
         </HStack>
       </HStack>
-      {/** Search */}
-      <Input className="md:hidden mt-2 w-2/3 bg-background-100 border-none rounded-full">
-        <InputSlot className="pl-3">
-          <InputIcon as={SearchIcon} className="" />
-        </InputSlot>
-        <InputField
-          type="text"
-          className="bg-transparent text-text-primary"
-        />
-      </Input>
+
     </VStack>
   );
 };

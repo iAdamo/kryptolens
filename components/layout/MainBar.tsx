@@ -281,9 +281,10 @@ const MainBar = () => {
           </VStack>
           <Card variant="outline" className="gap-4">
             <HStack className="justify-between">
-              <Heading>Market</Heading>
-              <Button variant="link">
-                <ButtonText size="md">View more</ButtonText>
+              <Heading size="md">Market</Heading>
+              <Button size="sm" variant="link">
+                <ButtonText>View more</ButtonText>
+                <ButtonIcon as={ArrowUpIcon} className="rotate-45" />
               </Button>
             </HStack>
             <HStack className="gap-4">
@@ -358,10 +359,9 @@ const MainBar = () => {
         <VStack className="md:w-1/3 gap-4">
           <Card variant="outline" className="md:h-56 gap-2">
             <HStack className="justify-between">
-              <Button variant="link" className="">
-                <ButtonIcon />
+              <Button size="sm" variant="link">
                 <ButtonText className="data-[hover=true]:no-underline">
-                  VIP LV. 1
+                  VIP Lv. 1
                 </ButtonText>
               </Button>
               <Button size="xs" variant="link" className="">
@@ -411,13 +411,49 @@ const MainBar = () => {
               </Progress>
               <HStack space="md">
                 <Text size="xs">Lv.7</Text>
-                <Text size="xs">Increase your KLS holdings by 1000KLS to upgrade to the next level</Text>
+                <Text size="xs">
+                  Increase your KLS holdings by 1000KLS to upgrade to the next
+                  level
+                </Text>
                 <Text size="xs">Lv.7</Text>
               </HStack>
             </VStack>
           </Card>
-          <Card variant="outline" className="h-36"></Card>
-          <Card variant="outline" className="h-56"></Card>
+          <Card variant="outline" className="md:h-36">
+            <HStack space="md" className="justify-between">
+              <VStack space="md" className="items-start justify-start">
+                <Heading size="xs">Kryptolens Affiliate Program</Heading>
+                <Text size="xs" className="pr-8">
+                  Invite friends and get 20% commission
+                </Text>
+                <Button
+                  size="xs"
+                  variant="outline"
+                  className="rounded-full w-1/2"
+                >
+                  <ButtonText>Apply Now</ButtonText>
+                </Button>
+              </VStack>
+              <VStack className="justify-center items-center">
+                <Avatar size={"lg"} className="bg-[#A2ACC8]">
+                  <AvatarFallbackText className="">T</AvatarFallbackText>
+                  <AvatarImage source={{ uri: "" }} />
+                </Avatar>
+              </VStack>
+            </HStack>
+          </Card>
+          <Card variant="outline" className="h-56">
+            <HStack className="justify-between">
+              <Heading size="xs">Information</Heading>
+              <Button size="xs" variant="link">
+                <ButtonText>View more</ButtonText>
+                <ButtonIcon as={ArrowUpIcon} className="rotate-45" />
+              </Button>
+            </HStack>
+            <VStack>
+              <Card variant="outline"></Card>
+            </VStack>
+          </Card>
         </VStack>
       </VStack>
     </VStack>

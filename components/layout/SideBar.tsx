@@ -37,7 +37,7 @@ const SideBar = () => {
     },
   ];
   return (
-    <HStack className="md:flex-col justify-center md:justify-normal flex-wrap gap-4 p-4 border border-gray-200 rounded-xl h-full">
+    <HStack className="hidden md:flex md:flex-col justify-center md:justify-normal flex-wrap gap-4 p-4 border border-gray-200 rounded-xl h-full">
       {actions.map((action) => (
         <Button
           key={action.name}
