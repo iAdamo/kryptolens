@@ -5,6 +5,8 @@ import SideBar from "@/components/layout/SideBar";
 import MainBar from "@/components/layout/MainBar";
 import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
+import NavTab from "@/components/layout/NavTab";
+
 
 export default function AdminDashboard() {
   return (
@@ -18,6 +20,7 @@ export default function AdminDashboard() {
           <MainBar />
         </VStack>
       </VStack>
+      <NavTab />
     </SafeAreaView>
   );
 }

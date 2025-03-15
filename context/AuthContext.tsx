@@ -29,12 +29,16 @@ export function SessionProvider({ children }: PropsWithChildren<object>) {
       value={{
         login: async (credentials: { email: string; password: string }) => {
           try {
-            const response = await login(credentials);
-            if (response) {
-              console.log("Logged in:", response);
-              setSession(response._id);
-              setUserData(response);
-              router.replace("/service");
+            if (credentials.email === "dhanushkumar@gmail.com" && credentials.password === "Password@123") {
+              setSession("1234");
+              setUserData({
+                email: "dhanushkumar@gmail.com",
+                name: "Dhanush Kumar",
+                photo: "https://randomuser.me/api/portraits",
+              });
+              router.push("/dashboard");
+            } else {
+              throw new Error("Invalid credentials");
             }
           } catch (e) {
             console.error("Error logging in:", e);

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
@@ -10,17 +12,15 @@ import {
   FormControlError,
   FormControlErrorText,
 } from "@/components/ui/form-control";
-import Link from "next/link";
-import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Button, ButtonText } from "@/components/ui/button";
-import Image from "next/image";
 import ForgotPasswordModal from "@/screens/auth/ForgetPassword";
 import { useSession } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 type ControllerRenderType = {
   field: {
@@ -52,7 +52,6 @@ const SignInModal = () => {
   const {
     control,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(
@@ -109,11 +108,10 @@ const SignInModal = () => {
   return (
     <VStack className="">
       <Heading size="2xl">Sign In</Heading>
-
-      <VStack className="gap-6 items-center pt-14 justify-center w-full h-full">
+      <VStack className="gap-6 items-center mt-32 md:mt-0 md:pt-14 p-4 justify-center w-full h-full">
         {/** Email */}
         <FormControl
-          className="w-96"
+          className="md:w-96 w-full"
           isInvalid={!!errors?.email || !validated.emailValid}
         >
           <Controller
@@ -154,7 +152,7 @@ const SignInModal = () => {
         </FormControl>
         {/** Password */}
         <FormControl
-          className=" w-96"
+          className="md:w-96 w-full"
           isInvalid={!!errors.password || !validated.passwordValid}
         >
           <Controller
@@ -197,7 +195,7 @@ const SignInModal = () => {
             </FormControlErrorText>
           </FormControlError>
         </FormControl>
-        <VStack className="gap-2">
+        <VStack className="gap-2 w-full md:w-auto">
           <Button
             variant="link"
             onPress={() => setShowForgotPasswordModal(true)}
@@ -209,22 +207,31 @@ const SignInModal = () => {
           </Button>
           <Button
             isDisabled={isLoading}
-            className="w-96 h-12 bg-btn-primary hover:bg-btn-secondary active:bg-brand-primary"
+            className="md:w-96 w-full h-12 bg-btn-primary hover:bg-btn-secondary active:bg-brand-primary"
             onPress={handleSubmit(onSubmit)}
           >
-            <ButtonText>{isLoading ? "Loading..." : "Sign in"}</ButtonText>
+            <ButtonText>
+              {isLoading ? (
+                <Spinner size="small" className="text-gray-500" />
+              ) : (
+                "Sign in"
+              )}
+            </ButtonText>
           </Button>
         </VStack>
         <Text className="text-md text-text-secondary">
           Don&apos;t have an account yet?
-          <Button onPress={() => router.replace("/auth/signup")} variant="link" className="inline">
+          <Button
+            onPress={() => router.replace("/auth/signup")}
+            variant="link"
+            className="inline"
+          >
             <ButtonText className="text-md ml-2 text-brand-primary underline hover:text-brand-secondary">
               Sign Up Here
             </ButtonText>
           </Button>
         </Text>
       </VStack>
-      
 
       {/** Forgot password modal */}
       {showForgotPasswordModal && (

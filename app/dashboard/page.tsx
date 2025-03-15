@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import AdminDashboard from "@/screens/dashboard/admin";
 
 export const metadata: Metadata = {
-  title: "Kryptolens - Admin Dashboard",
-  description: "Admin dashboard for Kryptolens",
+  title: "Kryptolens - Dashboard",
+  description: "Kryptolens",
 };
 
 export default AdminDashboard;

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Keyboard } from "react-native";
 import { useForm, Controller } from "react-hook-form";
@@ -12,14 +14,11 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from "@/components/ui/form-control";
-import Link from "next/link";
-import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import { EyeIcon, EyeOffIcon } from "@/components/ui/icon";
 import { Button, ButtonText } from "@/components/ui/button";
-import Image from "next/image";
 import { register, sendCode } from "@/axios/auth";
 import VerifyCodeModal from "../VerifyCodeModal";
 import { useRouter } from "next/navigation";
@@ -149,10 +148,10 @@ const SignUpModal = () => {
   return (
     <VStack className="">
       <Heading size="2xl">Sign Up</Heading>
-      <VStack className="gap-4 pt-8 items-center justify-center w-full h-full">
+      <VStack className="gap-4 md:pt-8 p-4 mt-28 md:mt-0 items-center justify-center w-full h-full">
         {/** Email */}
         <FormControl
-          className="w-96"
+          className="md:w-96 w-full"
           isInvalid={!!errors?.email || !validated.emailValid}
         >
           <FormControlLabel>
@@ -178,12 +177,12 @@ const SignUpModal = () => {
               <Input className="h-12">
                 <InputField
                   placeholder="Email"
+                  className="text-sm"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
-                  className=""
                 />
               </Input>
             )}
@@ -196,7 +195,7 @@ const SignUpModal = () => {
         </FormControl>
         {/** Password */}
         <FormControl
-          className=" w-96"
+          className="md:w-96 w-full"
           isInvalid={!!errors.password || !validated.passwordValid}
         >
           <FormControlLabel>
@@ -222,13 +221,13 @@ const SignUpModal = () => {
               <Input className="h-12">
                 <InputField
                   type={showPassword ? "text" : "password"}
+                  className="text-sm"
                   placeholder="Enter password"
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
                   onSubmitEditing={handleKeyPress}
                   returnKeyType="done"
-                  className=""
                 />
                 <InputSlot onPress={handleState} className="pr-3">
                   <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
@@ -243,7 +242,10 @@ const SignUpModal = () => {
           </FormControlError>
         </FormControl>
         {/* ------------------------------------------ Confirm Password -------------------------------------------*/}
-        <FormControl className="w-96" isInvalid={!!errors.confirmPassword}>
+        <FormControl
+          className="md:w-96 w-full"
+          isInvalid={!!errors.confirmPassword}
+        >
           <FormControlLabel>
             <FormControlLabelText>Confirm Password</FormControlLabelText>
           </FormControlLabel>
@@ -292,10 +294,10 @@ const SignUpModal = () => {
           </FormControlError>
         </FormControl>
         {/* ----------------------------------- Sign Up Button ------------------------------------------ */}
-        <VStack className="gap-2">
+        <VStack className="gap-2 w-full md:w-auto">
           <Button
             isDisabled={isLoading}
-            className="w-96 h-12 bg-btn-primary hover:bg-btn-secondary active:bg-brand-primary"
+            className="md:w-96 w-full h-12 bg-btn-primary hover:bg-btn-secondary active:bg-brand-primary"
             onPress={handleSubmit(onSubmit)}
           >
             <ButtonText>{isLoading ? "Loading..." : "Sign Up"}</ButtonText>
@@ -303,7 +305,11 @@ const SignUpModal = () => {
         </VStack>
         <Text className="text-md text-text-secondary">
           Already have an account?
-          <Button onPress={() => router.push("/auth/signin")} variant="link" className="inline">
+          <Button
+            onPress={() => router.push("/auth/signin")}
+            variant="link"
+            className="inline"
+          >
             <ButtonText className="text-md ml-2 text-brand-primary underline hover:text-brand-secondary">
               Sign In Here
             </ButtonText>

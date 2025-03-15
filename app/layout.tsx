@@ -2,7 +2,6 @@
 import StyledJsxRegistry from "./registry";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { SessionProvider } from "@/context/AuthContext";
-import NavTab from "@/components/layout/NavTab";
 
 export default function RootLayout({
   children,
@@ -16,7 +15,6 @@ export default function RootLayout({
           <GluestackUIProvider mode="light">
             <SessionProvider>
               {children}
-              <NavTab />
             </SessionProvider>
           </GluestackUIProvider>
         </StyledJsxRegistry>
