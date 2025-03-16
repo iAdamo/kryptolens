@@ -20,7 +20,7 @@ export const NavBar = () => {
       <HStack className="md:justify-between">
         <HStack className="gap-10 items-center">
           <VStack>
-            <Image src="/logo.png" alt="logo" width={50} height={50} />
+            <Image src="/assets/logo.png" alt="logo" width={80} height={80} />
           </VStack>
           <HStack className="hidden md:flex space-x-10">
             <Link href="/buy-crypto">

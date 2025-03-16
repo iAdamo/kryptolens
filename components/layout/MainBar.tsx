@@ -63,6 +63,8 @@ interface MarketData {
 
 const MainBar = () => {
   const [marketData, setMarketData] = useState<MarketData[]>([]);
+  const [editName, setEditName] = useState<boolean>(false);
+  const [nameValue, setNameValue] = useState<string>("Dhanush Kumar");
   const [editCoin, setEditCoin] = useState<boolean>(false);
   const [coinValue, setCoinValue] = useState<string>("3.434433344");
   const [inrValue, setInrValue] = useState<number>(0);
@@ -112,6 +114,7 @@ const MainBar = () => {
 
   const handleSave = () => {
     setEditCoin(false);
+    setEditName(false);
     setInrValue(
       parseFloat(coinValue) * conversionRate * marketData[0]?.current_price
     );
@@ -130,9 +133,27 @@ const MainBar = () => {
             </VStack>
             <VStack>
               <Text className="text-sm md:text-md">Welcome...</Text>
-              <Heading size="md" className="md:text-3xl">
-                Dhanush Kumar
-              </Heading>
+              {editName ? (
+                <Input>
+                  <InputField
+                    placeholder="Enter Text here..."
+                    value={nameValue}
+                    onChange={(e) =>
+                      setNameValue(
+                        (e.target as unknown as HTMLInputElement).value
+                      )
+                    }
+                    onBlur={handleSave}
+                  />
+                </Input>
+              ) : (
+                <Pressable onPress={() => setEditName(true)}>
+                  <Heading size="md" className="md:text-3xl">
+                    {nameValue}{" "}
+                  </Heading>
+                </Pressable>
+              )}
+
             </VStack>
           </HStack>
           <HStack>
@@ -361,7 +382,7 @@ const MainBar = () => {
             <HStack className="justify-between">
               <Button size="sm" variant="link">
                 <ButtonText className="data-[hover=true]:no-underline">
-                  VIP Lv. 1
+                  VIP Lv. 7
                 </ButtonText>
               </Button>
               <Button size="xs" variant="link" className="">
@@ -402,7 +423,7 @@ const MainBar = () => {
             <VStack className="items-start justify-start gap-1">
               <Button size="sm" variant="link" className="w-32">
                 <ButtonText className="data-[hover=true]:no-underline">
-                  KLS holdings
+                  KTL holdings
                 </ButtonText>
                 <ButtonIcon as={ChevronDownIcon} />
               </Button>
@@ -412,7 +433,7 @@ const MainBar = () => {
               <HStack space="md">
                 <Text size="xs">Lv.7</Text>
                 <Text size="xs">
-                  Increase your KLS holdings by 1000KLS to upgrade to the next
+                  Increase your KTL holdings by 1000KLS to upgrade to the next
                   level
                 </Text>
                 <Text size="xs">Lv.7</Text>
@@ -436,7 +457,7 @@ const MainBar = () => {
               </VStack>
               <VStack className="justify-center items-center">
                 <Avatar size={"lg"} className="bg-[#A2ACC8]">
-                  <AvatarFallbackText className="">T</AvatarFallbackText>
+                  <AvatarFallbackText className="">KTL</AvatarFallbackText>
                   <AvatarImage source={{ uri: "" }} />
                 </Avatar>
               </VStack>
